@@ -1,0 +1,24 @@
+.fadedBgArea {
+  width: 100%;
+  height: 100%;
+  background: rgba(2, 3, 3, 0.836);
+  position: fixed;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.fadedBgArea .content {
+  font-size: 30px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 2px;
+}
+
+.fadedBgArea .closeBtn {
+  position: relative;
+  top: -45px;
+  right: -29px;
+}

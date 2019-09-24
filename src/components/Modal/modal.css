@@ -1,0 +1,53 @@
+.modalArea {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+.modal {
+  width: 100%;
+  max-width: 900px;
+  min-width: 350px;
+  max-height: 80%;
+  visibility: visible;
+  background: #ffffff;
+  z-index: 20;
+}
+.modal h2 {
+  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+  margin: 0;
+}
+.modal .content {
+  padding: 3rem;
+  max-height: 350px;
+  min-height: 200px;
+  overflow-y: scroll;
+}
+.modal .actions {
+  border-top: 1px solid rgba(156, 146, 146, 0.2);
+  background: rgba(156, 146, 146, 0.1);
+  padding: 0.5rem 1rem;
+}
+.modal .actions button {
+  border: 0;
+  background: rgba(156, 146, 146, 0.6);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+#centered-toggle-button {
+  position: absolute;
+}
+
+@media (prefers-reduced-motion) {
+  .modal {
+    offset-path: none;
+  }
+}
