@@ -12,6 +12,7 @@ import CheckIcon from "@material-ui/icons/Check";
 import "./index.css";
 
 import Modal from "../Modal";
+import { positions } from "@material-ui/system";
 
 class Homepage extends Component {
   state = {
@@ -200,35 +201,40 @@ class Homepage extends Component {
     } = this.state;
 
     return (
-      <div>
+      <div className="flex flex-col items-center">
         <Modal
           onClose={this.showModal}
           show={this.state.is_modal_up}
           title={project_type ? project_type : ""}
         >
           {project_type === "Docker" && (
-            <form style={formContainer}>
+            <form>
               <div>
                 <TextField
-                  placeholder=" Working Dir"
+                  placeholder="Working Dir"
+                  label="Working Dir"
+                  variant="filled"
                   fullWidth
-                  margin="normal"
                   name="working_dir"
                   value={this.state.working_dir}
                   onChange={this.onChange}
                   required
                 />
                 <TextField
-                  placeholder=" Container Port"
+                  placeholder="Container Port"
+                  label="Container Port"
+                  variant="filled"
                   fullWidth
                   margin="normal"
                   name="container_port"
-                  value={this.state.container_port}
+                  value="8761"
                   onChange={this.onChange}
                   required
                 />
                 <TextField
-                  placeholder=" Jar Name"
+                  placeholder="Jar Name"
+                  label="Jar Name"
+                  variant="filled"
                   fullWidth
                   margin="normal"
                   name="jar_name"
@@ -238,7 +244,9 @@ class Homepage extends Component {
                 />
 
                 <TextField
-                  placeholder=" Image Name"
+                  placeholder="Image Name"
+                  label="Image Name"
+                  variant="outlined"
                   fullWidth
                   margin="normal"
                   name="image_name"
@@ -247,7 +255,9 @@ class Homepage extends Component {
                   required
                 />
                 <TextField
-                  placeholder=" Service Name"
+                  placeholder="Service Name"
+                  label="Service Name"
+                  variant="outlined"
                   fullWidth
                   margin="normal"
                   name="service_name"
@@ -256,7 +266,9 @@ class Homepage extends Component {
                   required
                 />
                 <TextField
-                  placeholder=" Log File Path"
+                  placeholder="Log File Path"
+                  label="Log File Path"
+                  variant="filled"
                   fullWidth
                   margin="normal"
                   name="log_file_path"
@@ -265,7 +277,9 @@ class Homepage extends Component {
                   required
                 />
                 <TextField
-                  placeholder=" Host Port"
+                  placeholder="Host Port"
+                  label="Host Port"
+                  variant="outlined"
                   fullWidth
                   margin="normal"
                   name="host_port"
@@ -274,7 +288,9 @@ class Homepage extends Component {
                   required
                 />
                 <TextField
-                  placeholder=" Secret Name"
+                  placeholder="Secret Name"
+                  label="Secret Name"
+                  variant="filled"
                   fullWidth
                   margin="normal"
                   name="secret_name"
@@ -283,11 +299,13 @@ class Homepage extends Component {
                   required
                 />
                 <TextField
-                  placeholder=" Replica No"
+                  placeholder="Replica No."
+                  label="Replica No."
+                  variant="filled"
                   fullWidth
                   margin="normal"
                   name="replica_no"
-                  value={this.state.replica_no}
+                  value="5"
                   onChange={this.onChange}
                   required
                 />
@@ -306,8 +324,9 @@ class Homepage extends Component {
                   onClick={e => this.handleSubmit(e, "docker")}
                   variant="contained"
                   color="primary"
+                  size="large"
                 >
-                  Save
+                  <span className="mr-2">Save</span>
                   <SaveIcon />
                 </Button>
               </div>
@@ -315,26 +334,33 @@ class Homepage extends Component {
           )}
 
           {project_type === "Pipeline" && (
-            <form style={formContainer}>
+            <form>
               <div>
-                <TextField
-                  placeholder=" Host Name"
-                  fullWidth
-                  margin="normal"
-                  name="host_name"
-                  value="CERNAPIQUN052"
-                  onChange={this.onChange}
-                  required
-                />
-                <TextField
-                  placeholder=" Credential Id"
-                  fullWidth
-                  margin="normal"
-                  name="credential_id"
-                  value="hdxts-root-credential"
-                  onChange={this.onChange}
-                  required
-                />
+                <div className="flex flex-col md:flex-row">
+                  <TextField
+                    placeholder="Host Name"
+                    label="Host Name"
+                    variant="filled"
+                    className="flex-1"
+                    margin="normal"
+                    name="host_name"
+                    value="CERNAPIQUN052"
+                    onChange={this.onChange}
+                    required
+                  />
+                  <div className="w-4"></div>
+                  <TextField
+                    placeholder="Credential Id"
+                    label="Credential Id"
+                    variant="filled"
+                    className="flex-1"
+                    margin="normal"
+                    name="credential_id"
+                    value="hdxts-root-credential"
+                    onChange={this.onChange}
+                    required
+                  />
+                </div>
                 {/* <TextField
                   placeholder=" Project Name"
                   fullWidth
@@ -354,7 +380,9 @@ class Homepage extends Component {
                   required
                 /> */}
                 <TextField
-                  placeholder=" Compose File Path"
+                  placeholder="Compose File Path"
+                  label="Compose File Path"
+                  variant="filled"
                   fullWidth
                   margin="normal"
                   name="compose_file_path"
@@ -394,9 +422,11 @@ class Homepage extends Component {
                   onClick={e => this.handleSubmit(e, "pipeline")}
                   variant="contained"
                   color="primary"
+                  size="large"
+                  className="mt-4"
                 >
-                  Save
-                  <SaveIcon />
+                  <span className="mr-2">Save</span>
+                  <SaveIcon fontSize="small" />
                 </Button>
               </div>
             </form>
@@ -424,53 +454,66 @@ class Homepage extends Component {
           </div>
         )}
 
-        {/* <div>Docker Pipeline Automation</div> */}
-
-        <form style={formContainer}>
-          <div>
-            <TextField
-              placeholder=" Project name"
-              fullWidth
+        <div className="flex flex-col justify-center uppercase font-bold items-center h-12 border rounded shadow-lg bg-red-100 w-full top-0 right-0 sticky">
+          Docker Pipeline Automation
+        </div>
+        <form className="w-full md:w-1/2 p-4 md:p-0 mt-24">
+          <div className="flex flex-col items-start p-8 border rounded  bg-gray-100 w-full">
+            {/* <TextField
+              placeholder="Project Name"
+              label="Project Name"
+              className="item-start w-1/2"
               margin="normal"
-              name="pname"
-              pattern="[a-zA-Z]$"
+              name="version"
+              variant="outlined"
               value={this.state.pname}
               onChange={this.onChange}
               required
-            />
+            /> */}
+            <input type="hidden" name="project_name" value={this.state.pname} />
             <TextField
-              placeholder=" Version"
-              fullWidth
+              placeholder="Version"
+              label="Version"
+              className="item-start w-1/2"
               margin="normal"
               name="version"
+              variant="outlined"
               value={this.state.version}
               onChange={this.onChange}
               required
             />
             <TextField
-              placeholder=" Github Url"
+              placeholder="Github URL"
+              label="Github URL"
+              className="item-start w-1/2"
               fullWidth
               margin="normal"
               name="github_url"
               value={this.state.github_url}
               onChange={this.onChange}
+              variant="outlined"
               required
             />
+
+            <div className="flex mt-2 text-gray-500">
+              <p className="font-bold">Project Name :</p>
+              <p className="ml-2 italic text-gray-700">{this.state.pname}</p>
+            </div>
             <RadioGroup
-              style={styleFlex}
               aria-label="project_type"
               name="project_type"
+              className="my-4 border border-gray-500 rounded p-4"
               value={this.state.project_type}
               onChange={this.onChange}
             >
               <FormControlLabel
                 value="Docker"
-                control={<Radio />}
+                control={<Radio color="secondary" />}
                 label="Docker"
               />
               <FormControlLabel
                 value="Pipeline"
-                control={<Radio />}
+                control={<Radio color="secondary" />}
                 label="Pipeline"
               />
             </RadioGroup>
@@ -479,9 +522,11 @@ class Homepage extends Component {
               onClick={e => this.handleSubmitData(e)}
               variant="contained"
               color="primary"
+              size="large"
+              className="self-center"
             >
-              Submit Data
-              <SaveIcon />
+              <span className="mr-2">Submit Data</span>
+              <SaveIcon fontSize="small" />
             </Button>
           </div>
         </form>
